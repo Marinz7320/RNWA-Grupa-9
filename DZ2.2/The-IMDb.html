@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      IMDb: Ratings, Reviews, and Where to Watch the Best Movies & TV
+    </title>
+    <link rel="stylesheet" href="The-IMDb.css" />
+    <link rel="icon" href="./imgs/imdb-title.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+	      load_data();
+	      function load_data(s){
+		        $.ajax({
+			      url:"nameSearch.php",
+			      method:"post",
+			      data:{s:s},
+		    	  success:function(data)
+			      {
+				      $('#result').html(data);
+			      }
+		        });
+	  }
+	    $('#search_text').keyup(function(){
+		    var search = $(this).val();
+		    if(search != '')
+		    { 
+			    load_data(search);
+		    }
+		    else
+		    {
+			    load_data();			
+		    }
+	    });
+    });
+    </script>
+  </head>
+  <body>
+    <nav>
+      <img src="./imgs/menu.svg" alt="f-menu" id="mimg" class="first-menu" />
+      <img src="./imgs/IMDB.png" alt="imdb" id="imdb" />
+      <p id="menu"><img src="./imgs/menu.svg" alt="menu" id="mimg" />Menu</p>
+      <!-- Scarch  -->
+      <div id="scarch">
+        <div id="all">
+          <div id="present-list">All</div>
+          <img src="./imgs/triangle.svg" alt="triangle" id="triangle" />
+        </div>
+        <ui id="all-list">
+          <li id="ls-all"><img src="./imgs/scarch.svg" id="list-img" />All</li>
+          <li id="ls-title">
+            <img src="./imgs/film-img.svg" id="list-img" />Title
+          </li>
+          <li id="ls-tv">
+            <img src="./imgs/television.svg" id="list-img" />TV Episodes
+          </li>
+          <li id="ls-celibs">
+            <img src="./imgs/group.svg" id="list-img" />Celibs
+          </li>
+          <li id="ls-comp">
+            <img src="./imgs/company.svg" id="list-img" />Compaines
+          </li>
+          <li id="ls-key">
+            <img src="./imgs/right-arrow-triangle.svg" id="list-img" />Keywords
+          </li>
+          <li id="ls-adv">
+            <img src="./imgs/document-page-blank.svg" id="list-img" />Advance
+            Scarch
+            <img
+              src="./imgs/right-arrow-triangle.svg"
+              class="right-arrow"
+              id="list-img"
+            />
+          </li>
+        </ui>
+        <input placeholder="Search IMDb" />
+        <button id="search-button" type="submit"><img src="./imgs/scarch.svg" /></button>
+      </div>
+      <!-- post scarch -->
+      <div id="pro">IMDBPro</div>
+      <div id="vline"></div>
+      <div id="wlist">
+        <img src="./imgs/whtchlist.svg" id="wl-img" />Watchlist
+      </div>
+      <div id="sin">Sign In</div>
+    </nav>
+    <div class="main">
+      <div class="movies">
+        <h3><span>|</span>Fan Favorites</h3>
+        <h3>This week's top TV and movies</h3>
+        <div class="card-list">
+          <div class="card">
+            <img src="./imgs/film1.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>The Batman</b></h4>
+              <p>8.4</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/film2.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Spider Man 3</b></h4>
+              <p>8.6</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/film3.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Shutter Island</b></h4>
+              <p>8.2</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/film6.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>The Irishman</b></h4>
+              <p>7.8</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/film5.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Inception</b></h4>
+              <p>8.8</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shows">
+        <div class="heading">Explore Movies & TV Shows</div>
+        <div class="card-list"><div class="card">
+            <img src="./imgs/serija1.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Breaking Bad</b></h4>
+              <p>9.5</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/serija2.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Money Heist</b></h4>
+              <p>8.3</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/serija3.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Peaky Blinders</b></h4>
+              <p>8.8</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/serija4.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Prison Break</b></b></h4>
+              <p>8.4</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="./imgs/serija5.jpg" alt="Avatar"  />
+            <div class="container">
+              <h4><b>Inception</b></h4>
+              <p>9.4</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="desniMainDiv">
+      <div class="bodyDijelovi">
+          <h3> Pretraga filmova u bazi podataka</h3>
+          <p><b>Search movie by its title</b></p>
+	<form> 
+	<input type="text" id="search_text">
+	</form>
+	<p>Output:<br> <span id="span" style="color:purple"></span></p>
+  <div id="result"></div>
+      </div>
+    </div>
+    <footer class="clfooter">
+      <div class="footer-content">
+        <h3>IMDb</h3>
+        <p>IMDb is an online database of information related to films, television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews.
+            <ul class="socials">
+              <li class="face"><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+              <li class="tw"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+              <li class="insta"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+              <li class="yt"><a href="#"><i class="fa-brands fa-youtube"></i></a></li>   
+           </ul>
+          </p>       
+        </div>
+      <div class="footer-bottom">
+        <p>copyright &copy;2022 <a href="#">IMDb</a>  </p>
+                <div class="footer-menu">
+                  <ul class="f-menu">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                  </ul>
+                </div>
+      </div>       
+    </footer>
+  </body>
+</html>

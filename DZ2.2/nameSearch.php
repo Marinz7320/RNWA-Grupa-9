@@ -6,6 +6,7 @@ table {
   border-collapse: collapse;
   border:solid 2px gray;
   width: 100%;
+  color : purple;
 }
 
 th, td {
@@ -16,10 +17,10 @@ table button {
   height: 32px;
   padding-right: 11px;
   border-radius: 0 5px 5px 0;
-  background-color: #f2f2f2;
   outline: none;
   cursor: pointer;
   color:purple;
+  background-color :#f2f2f2;
 }
 tr:nth-child(even) {background-color: #f2f2f2;}
 </style>
@@ -27,8 +28,11 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 <body>
 
 <?php
-$s = $_REQUEST["s"];
-$hint = "";
+if(isset($_POST['s'])){
+  $s = $_POST['s']; 
+}else{
+  $s = "Name not set in GET Method";
+}
 
 // Konekcija baze
 $connection = mysqli_connect('localhost:3307','root','','movies');
@@ -48,7 +52,8 @@ if (!$db_select) {
 $sql="SELECT * FROM `movie` WHERE `title` LIKE  '%$s%' ";
 
 $response = $connection->query($sql)or die("Querry failed");
-
+if(mysqli_num_rows($response) > 0)
+{
 echo "<table>
 <tr>
 <th>Movie Name</th>
@@ -65,6 +70,7 @@ while ($myrow=mysqli_fetch_row($response)){
 		}
 
 echo "</table>";
+}
 }
 ?>
 </body>
