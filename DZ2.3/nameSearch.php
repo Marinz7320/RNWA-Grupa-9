@@ -2,6 +2,7 @@
 <html>
 <head>
 <style>
+/*Citav DZ2.3 staviti u /xaamp/htdocs folder da se provjeri funkcionalnost. Baza podataka se nalazi na phpMyAdminu*/
 table {
   border-collapse: collapse;
   border:solid 2px gray;
