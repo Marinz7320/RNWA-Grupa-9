@@ -1,0 +1,1 @@
+soap folder staviti u /xaamp/htdocs direktorij i ne mijenjati ime radi zadane relativne putanje u kodu. 
