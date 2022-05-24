@@ -26,7 +26,7 @@
           
             <ul class="nav navbar-nav">  
                 <li class="active"><a href='./'>Home</a></li>  
-                <li><a href='?controller=orderdetails&action=index'>Movie Cast</a></li>  
+                <li><a href='?controller=movieCast&action=index'>Movie Cast</a></li>  
             </ul>  
             
         </div>  

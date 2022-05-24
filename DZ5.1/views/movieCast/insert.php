@@ -1,20 +1,24 @@
 <div class="container">
-<form action="?controller=orderdetails&action=insertorders" method="POST">
+<form action="?controller=movieCast&action=insertMovieCast" method="POST">
   <div class="form-group">
-    <label for="productCode">Product Code:</label>
-    <input type="text" class="form-control" name="productCode">
+    <label for="movie_id">Movie ID:</label>
+    <input type="text" class="form-control" name="">
   </div>
   <div class="form-group">
-    <label for="quantityOrdered">Quantity Ordered:</label>
-    <input type="text" class="form-control" name="quantityOrdered">
+    <label for="person_id">Quantity Ordered:</label>
+    <input type="text" class="form-control" name="person_id">
   </div>
   <div class="form-group">
-    <label for="priceEach">Price Each:</label>
-    <input type="text" class="form-control" name="priceEach">
+    <label for="character_name">Price Each:</label>
+    <input type="text" class="form-control" name="character_name">
   </div>
   <div class="form-group">
-    <label for="orderLineNumber">Order Line Number:</label>
-    <input type="text" class="form-control" name="orderLineNumber" >
+    <label for="gender_id">Order Line Number:</label>
+    <input type="text" class="form-control" name="gender_id" >
+  </div>
+  <div class="form-group">
+    <label for="cast_order">Order Line Number:</label>
+    <input type="text" class="form-control" name="cast_order" >
   </div>
     <button type="submit" class="btn btn-default">Confirm</button>
 </form> 
