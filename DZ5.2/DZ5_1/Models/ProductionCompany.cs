@@ -5,15 +5,10 @@ using System.Collections.Generic;
 
 namespace DZ5_1.Models
 {
-    public partial class Employee
+    public partial class ProductionCompany
     {
-        public int EmployeeNumber { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Extension { get; set; }
-        public string Email { get; set; }
-        public string OfficeCode { get; set; }
-        public int? ReportsTo { get; set; }
-        public string JobTitle { get; set; }
+        public int company_id { get; set; }
+        public string company_name { get; set; }
+        
     }
 }

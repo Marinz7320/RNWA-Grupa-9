@@ -5,11 +5,10 @@ using System.Collections.Generic;
 
 namespace DZ5_1.Models
 {
-    public partial class Payment
+    public partial class MovieCompany
     {
-        public int CustomerNumber { get; set; }
-        public string CheckNumber { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public double Amount { get; set; }
+        public int movie_id { get; set; }
+        public int company_id { get; set; }
+       
     }
 }

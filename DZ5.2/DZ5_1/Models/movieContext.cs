@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DZ5_1.Models
 {
-    public partial class birtContext : DbContext
+    public partial class movieContext : DbContext
     {
-        public birtContext()
+        public movieContext()
         {
         }
 
-        public birtContext(DbContextOptions<birtContext> options)
+        public birtContext(DbContextOptions<movieContext> options)
             : base(options)
         {
         }
