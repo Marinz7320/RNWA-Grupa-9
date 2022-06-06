@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^ movies.php [L]
+	RewriteRule ^movies/?$ movies.php [NC,L]
+	RewriteRule ^movies/([0-9]+)/?$ movies.php?id=$1 [NC,L]
+
+</IfModule>
+
+
+Options +FollowSymLinks
+RewriteEngine On
+
+

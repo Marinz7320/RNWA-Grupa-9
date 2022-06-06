@@ -11,27 +11,27 @@
 		case 'GET':
 			// Retrive Products
 			//print_r($_GET);
-			if(!empty($_GET["id"]))
+			if(!empty($_GET["movie_id"]))
 			{
-				$id=intval($_GET["id"]);
-				get_employees($id);
+				$id=intval($_GET["movie_id"]);
+				get_movies($movie_id);
 			}
 			else
 			{
-				get_employees();
+				get_movies();
 			}
 			break;
 			
 			case 'POST':
 			// Insert Product
-			insert_employee();
+			insert_movie();
 			break;	
 			
 			case 'PUT':
 			// Update Product		
-			if (isset($_GET["id"])){
-				$id=intval($_GET["id"]);
-				update_employee($id);				
+			if (isset($_GET["movie_id"])){
+				$id=intval($_GET["movie_id"]);
+				update_movie($movie_id);				
 			}
 			else{
 				header('Content-Type: application/json');
@@ -42,8 +42,8 @@
 			break;				
 			case 'DELETE':
 			// Delete Product
-			$id=intval($_GET["id"]);
-			delete_employee($id);
+			$id=intval($_GET["movie_id"]);
+			delete_movie($movie_id);
 			break;
 			
 		default:
