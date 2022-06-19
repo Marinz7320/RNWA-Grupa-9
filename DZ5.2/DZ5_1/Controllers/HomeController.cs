@@ -1,4 +1,5 @@
-﻿using DZ5_1.Models;
+﻿using AA_2.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DZ5_1.Controllers
+namespace AA_2.Controllers
 {
     public class HomeController : Controller
     {
@@ -20,11 +21,21 @@ namespace DZ5_1.Controllers
 
         public IActionResult Index()
         {
+            string token = "CookieAuth";
+            string value = Guid.NewGuid().ToString().ToUpper();
+            CookieOptions cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddDays(3);
+            Response.Cookies.Append(token, value, cookieOptions);
             return View();
         }
 
         public IActionResult Privacy()
         {
+            string token = "CookieAuth";
+            string value = "";
+            CookieOptions cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Append(token, value, cookieOptions);
             return View();
         }
 
