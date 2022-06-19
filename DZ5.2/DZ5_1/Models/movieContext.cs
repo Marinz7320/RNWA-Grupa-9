@@ -12,17 +12,18 @@ namespace DZ5_1.Models
         {
         }
 
-        public movieContext(DbContextOptions<movieContext> options)
+        public birtContext(DbContextOptions<movieContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Movie> Movie { get; set; }
-        public virtual DbSet<MovieCast> MovieCast { get; set; }
-        public virtual DbSet<Genre> Genre { get; set; }
-        public virtual DbSet<Department> Department { get; set; }
-        public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<ProductionCompany> Production Company { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Office> Offices { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Orderdetail> Orderdetails { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,182 +38,287 @@ namespace DZ5_1.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Movie>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.movie_id)
-                    .HasName("PK_movie_movie_id");
+                entity.HasKey(e => e.CustomerNumber)
+                    .HasName("PK_customers_customerNumber");
 
-                entity.ToTable("movie", "movies");
+                entity.ToTable("customers", "birt");
 
-                entity.Property(e => e.movie_id)
+                entity.Property(e => e.CustomerNumber)
                     .ValueGeneratedNever()
-                    .HasColumnName("movie_id");
+                    .HasColumnName("customerNumber");
 
-                entity.Property(e => e.title)
+                entity.Property(e => e.AddressLine1)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("title");
+                    .HasColumnName("addressLine1");
 
-                entity.Property(e => e.budget)
+                entity.Property(e => e.AddressLine2)
                     .HasMaxLength(50)
-                    .HasColumnName("budget");
+                    .HasColumnName("addressLine2");
 
-                entity.Property(e => e.homepage)
+                entity.Property(e => e.City)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("homepage");
+                    .HasColumnName("city");
 
-                entity.Property(e => e.overview)
+                entity.Property(e => e.ContactFirstName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("overview");
+                    .HasColumnName("contactFirstName");
 
-                entity.Property(e => e.popularity)
+                entity.Property(e => e.ContactLastName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("popularity");
+                    .HasColumnName("contactLastName");
 
-                entity.Property(e => e.release_date)
+                entity.Property(e => e.Country)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("release_date");
+                    .HasColumnName("country");
 
-                entity.Property(e => e.runtime)
-                 .IsRequired()
-                 .HasMaxLength(50)
-                 .HasColumnName("runtime");
+                entity.Property(e => e.CreditLimit).HasColumnName("creditLimit");
 
-                entity.Property(e => e.movie_status)
+                entity.Property(e => e.CustomerName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("movie_status");
+                    .HasColumnName("customerName");
 
-                entity.Property(e => e.tagline)
+                entity.Property(e => e.Phone)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("tagline");
+                    .HasColumnName("phone");
 
-                entity.Property(e => e.vote_average)
+                entity.Property(e => e.PostalCode)
                     .HasMaxLength(15)
-                    .HasColumnName("vote_average");
+                    .HasColumnName("postalCode");
 
+                entity.Property(e => e.SalesRepEmployeeNumber).HasColumnName("salesRepEmployeeNumber");
 
-                entity.Property(e => e.vote_count)
+                entity.Property(e => e.State)
                     .HasMaxLength(50)
-                    .HasColumnName("vote_count");
+                    .HasColumnName("state");
             });
 
-            modelBuilder.Entity<MovieCast>(entity =>
+            modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasKey(e => e.movie_id)
-                    .HasName("PK_movie_cast_movie_id");
+                entity.HasKey(e => e.EmployeeNumber)
+                    .HasName("PK_employees_employeeNumber");
 
-                entity.ToTable("movie_cast", "movies");
+                entity.ToTable("employees", "birt");
 
-                entity.Property(e => e.movie_id)
+                entity.Property(e => e.EmployeeNumber)
                     .ValueGeneratedNever()
-                    .HasColumnName("movie_id");
+                    .HasColumnName("employeeNumber");
 
-                entity.Property(e => e.person_id)
+                entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .HasColumnName("person_id");
+                    .HasColumnName("email");
 
-                entity.Property(e => e.character_name)
+                entity.Property(e => e.Extension)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .HasColumnName("character_name");
+                    .HasColumnName("extension");
 
-                entity.Property(e => e.gender_id)
+                entity.Property(e => e.FirstName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("gender_id");
+                    .HasColumnName("firstName");
 
-                entity.Property(e => e.cast_order)
+                entity.Property(e => e.JobTitle)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("cast_order");
+                    .HasColumnName("jobTitle");
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("lastName");
+
+                entity.Property(e => e.OfficeCode)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .HasColumnName("officeCode");
+
+                entity.Property(e => e.ReportsTo).HasColumnName("reportsTo");
             });
 
-            modelBuilder.Entity<Department>(entity =>
+            modelBuilder.Entity<Office>(entity =>
             {
-                entity.HasKey(e => e.department_id)
-                    .HasName("PK_department_department_id");
+                entity.HasKey(e => e.OfficeCode)
+                    .HasName("PK_offices_officeCode");
 
-                entity.ToTable("department", "movies");
+                entity.ToTable("offices", "birt");
 
-                entity.Property(e => e.department_id)
+                entity.Property(e => e.OfficeCode)
                     .HasMaxLength(50)
-                    .HasColumnName("department_id");
+                    .HasColumnName("officeCode");
 
-                entity.Property(e => e.department_name)
+                entity.Property(e => e.AddressLine1)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("department_name");
+                    .HasColumnName("addressLine1");
+
+                entity.Property(e => e.AddressLine2)
+                    .HasMaxLength(50)
+                    .HasColumnName("addressLine2");
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("city");
+
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("country");
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.PostalCode)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("postalCode");
+
+                entity.Property(e => e.State)
+                    .HasMaxLength(50)
+                    .HasColumnName("state");
+
+                entity.Property(e => e.Territory)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("territory");
             });
 
-            modelBuilder.Entity<Person>(entity =>
+            modelBuilder.Entity<Order>(entity =>
             {
-                entity.HasKey(e => e.person_id);
+                entity.HasKey(e => e.OrderNumber);
 
-                entity.ToTable("person", "movies");
+                entity.ToTable("orders", "birt");
 
-                entity.Property(e => e.person_id)
+                entity.Property(e => e.OrderNumber)
                     .ValueGeneratedNever()
-                    .HasColumnName("person_id");
+                    .HasColumnName("orderNumber");
 
-                entity.Property(e => e.person_name)
+                entity.Property(e => e.Comments).HasColumnName("comments");
+
+                entity.Property(e => e.CustomerNumber).HasColumnName("customerNumber");
+
+                entity.Property(e => e.OrderDate)
                     .HasPrecision(0)
-                    .HasColumnName("person_name");
-            });
+                    .HasColumnName("orderDate");
 
-            modelBuilder.Entity<Genre>(entity =>
-            {
-                entity.HasKey(e => new { e.genre_id })
-                    .HasName("PK_genre_genre_id");
-
-                entity.ToTable("genre", "movies");
-
-                entity.Property(e => e.genre_id)
-                    .HasMaxLength(50)
-                    .HasColumnName("genre_id");
-
-                entity.Property(e => e.genre_name).HasColumnName("genre_name");
-  
-            });
-
-            modelBuilder.Entity<MovieCompany>(entity =>
-            {
-                entity.HasKey(e => new { e.movie_id, e.company_id })
-                    .HasName("PK_movie_company_company_id");
-
-                entity.ToTable("movie_company", "movies");
-
-
-                entity.Property(e => e.movie_id)
-                    .HasMaxLength(50)
-                    .HasColumnName("movie_id");
-
-                entity.Property(e => e.company_id)
+                entity.Property(e => e.RequiredDate)
                     .HasPrecision(0)
-                    .HasColumnName("company_id");
-            });
+                    .HasColumnName("requiredDate");
 
-            modelBuilder.Entity<ProductionCompany>(entity =>
-            {
-                entity.HasKey(e => e.company_id)
-                    .HasName("PK_production_company_company_id");
+                entity.Property(e => e.ShippedDate)
+                    .HasPrecision(0)
+                    .HasColumnName("shippedDate");
 
-                entity.ToTable("production_company", "movie");
-
-                entity.Property(e => e.company_id)
-                    .HasMaxLength(50)
-                    .HasColumnName("company_id");
-
-                entity.Property(e => e.company_name)
+                entity.Property(e => e.Status)
                     .IsRequired()
-                    .HasColumnName("company_name");
+                    .HasMaxLength(15)
+                    .HasColumnName("status");
+            });
 
+            modelBuilder.Entity<Orderdetail>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderNumber, e.ProductCode })
+                    .HasName("PK_orderdetails_orderNumber");
+
+                entity.ToTable("orderdetails", "birt");
+
+                entity.Property(e => e.OrderNumber).HasColumnName("orderNumber");
+
+                entity.Property(e => e.ProductCode)
+                    .HasMaxLength(50)
+                    .HasColumnName("productCode");
+
+                entity.Property(e => e.OrderLineNumber).HasColumnName("orderLineNumber");
+
+                entity.Property(e => e.PriceEach).HasColumnName("priceEach");
+
+                entity.Property(e => e.QuantityOrdered).HasColumnName("quantityOrdered");
+
+                entity.HasOne(d => d.OrderNumberNavigation)
+                    .WithMany(p => p.Orderdetails)
+                    .HasForeignKey(d => d.OrderNumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_orderdetails_orders1");
+
+                entity.HasOne(d => d.ProductCodeNavigation)
+                    .WithMany(p => p.Orderdetails)
+                    .HasForeignKey(d => d.ProductCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_orderdetails_products");
+            });
+
+            modelBuilder.Entity<Payment>(entity =>
+            {
+                entity.HasKey(e => new { e.CustomerNumber, e.CheckNumber })
+                    .HasName("PK_payments_customerNumber");
+
+                entity.ToTable("payments", "birt");
+
+                entity.Property(e => e.CustomerNumber).HasColumnName("customerNumber");
+
+                entity.Property(e => e.CheckNumber)
+                    .HasMaxLength(50)
+                    .HasColumnName("checkNumber");
+
+                entity.Property(e => e.Amount).HasColumnName("amount");
+
+                entity.Property(e => e.PaymentDate)
+                    .HasPrecision(0)
+                    .HasColumnName("paymentDate");
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.HasKey(e => e.ProductCode)
+                    .HasName("PK_products_productCode");
+
+                entity.ToTable("products", "birt");
+
+                entity.Property(e => e.ProductCode)
+                    .HasMaxLength(50)
+                    .HasColumnName("productCode");
+
+                entity.Property(e => e.BuyPrice).HasColumnName("buyPrice");
+
+                entity.Property(e => e.Msrp).HasColumnName("MSRP");
+
+                entity.Property(e => e.ProductDescription)
+                    .IsRequired()
+                    .HasColumnName("productDescription");
+
+                entity.Property(e => e.ProductLine)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("productLine");
+
+                entity.Property(e => e.ProductName)
+                    .IsRequired()
+                    .HasMaxLength(70)
+                    .HasColumnName("productName");
+
+                entity.Property(e => e.ProductScale)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("productScale");
+
+                entity.Property(e => e.ProductVendor)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("productVendor");
+
+                entity.Property(e => e.QuantityInStock).HasColumnName("quantityInStock");
             });
 
             OnModelCreatingPartial(modelBuilder);
