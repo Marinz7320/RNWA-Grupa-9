@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ5.2\\DZ5_1\\DZ5_1.csproj": {}
+    "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ7.2 i DZ7.3\\DZ5_1\\AA 2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ5.2\\DZ5_1\\DZ5_1.csproj": {
+    "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ7.2 i DZ7.3\\DZ5_1\\AA 2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ5.2\\DZ5_1\\DZ5_1.csproj",
-        "projectName": "DZ5_1",
-        "projectPath": "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ5.2\\DZ5_1\\DZ5_1.csproj",
+        "projectUniqueName": "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ7.2 i DZ7.3\\DZ5_1\\AA 2.csproj",
+        "projectName": "AA 2",
+        "projectPath": "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ7.2 i DZ7.3\\DZ5_1\\AA 2.csproj",
         "packagesPath": "C:\\Users\\Zovko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ5.2\\DZ5_1\\obj\\",
+        "outputPath": "C:\\Users\\Zovko\\Desktop\\RNWA\\DZ7.2 i DZ7.3\\DZ5_1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

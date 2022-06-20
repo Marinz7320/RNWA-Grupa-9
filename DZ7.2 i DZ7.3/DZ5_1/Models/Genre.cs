@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DZ5_1.Models
+namespace AA_2.Models
 {
     public partial class Genre
     {

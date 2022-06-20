@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DZ5_1
+namespace AA_2
 {
     public class Program
     {

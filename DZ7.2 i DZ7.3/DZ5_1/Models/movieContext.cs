@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace DZ5_1.Models
+namespace AA_2.Models
 {
     public partial class movieContext : DbContext
     {
@@ -22,8 +22,8 @@ namespace DZ5_1.Models
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<ProductionCompany> Production Company { get; set; }
-
+        public virtual DbSet<ProductionCompany> ProductionCompany { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -214,6 +214,25 @@ namespace DZ5_1.Models
                     .HasColumnName("company_name");
 
             });
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.HasKey(e => e.country_id);
+
+                entity.ToTable("country", "movies");
+
+                entity.Property(e => e.country_id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("country_id");
+
+                entity.Property(e => e.country_iso_code)
+                    .HasPrecision(0)
+                    .HasColumnName("person_name");
+                entity.Property(e => e.country_name)
+                   .HasPrecision(0)
+                   .HasColumnName("country_name");
+
+            });
+            
 
             OnModelCreatingPartial(modelBuilder);
         }

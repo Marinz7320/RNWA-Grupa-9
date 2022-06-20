@@ -1,6 +1,6 @@
 using System;
 
-namespace DZ5_1.Models
+namespace AA_2.Models
 {
     public class ErrorViewModel
     {

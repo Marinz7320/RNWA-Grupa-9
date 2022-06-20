@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DZ5_1.Models;
+using AA_2.Models;
 
-namespace DZ5_1.Controllers
+namespace AA_2.Controllers
 {
     public class MovieController : Controller
     {
-        private readonly movie _context;
+        private readonly movieContext _context;
 
         public MovieController(movieContext context)
         {
@@ -27,7 +27,7 @@ namespace DZ5_1.Controllers
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? movie_id)
         {
-            if (movie:id == null)
+            if (movie_id == null)
             {
                 return NotFound();
             }
@@ -72,7 +72,7 @@ namespace DZ5_1.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Movie.FindAsync(id);
+            var order = await _context.Movie.FindAsync(movie_id);
             if (order == null)
             {
                 return NotFound();
@@ -96,7 +96,7 @@ namespace DZ5_1.Controllers
             {
                 try
                 {
-                    _context.Update(order);
+                    _context.Update(movie.movie_id);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -125,7 +125,7 @@ namespace DZ5_1.Controllers
 
             var movie = await _context.Movie
                 .FirstOrDefaultAsync(m => m.movie_id == movie_id);
-            if (order == null)
+            if (movie_id == null)
             {
                 return NotFound();
             }
@@ -139,7 +139,7 @@ namespace DZ5_1.Controllers
         public async Task<IActionResult> DeleteConfirmed(int movie_id)
         {
             var order = await _context.Movie.FindAsync(movie_id);
-            _context.Orders.Remove(order);
+            _context.Movie.Remove(order);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

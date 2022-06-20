@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DZ5_1.Models;
+using AA_2.Models;
 
-namespace DZ5_1.Controllers
+namespace AA_2.Controllers
 {
     public class MovieCastController : Controller
     {
         private readonly movieContext _context;
 
-        public OrderdetailsController(movieContext context)
+        public MovieCastController(movieContext context)
         {
             _context = context;
         }
@@ -21,8 +21,8 @@ namespace DZ5_1.Controllers
         // GET: MovieCast
         public async Task<IActionResult> Index()
         {
-            var birtContext = _context.Orderdetails.Include(o => o.OrderNumberNavigation).Include(o => o.ProductCodeNavigation);
-            return View(await birtContext.ToListAsync());
+            var movieContext = _context.MovieCast.Include(o => o.MovieIDNavigation).Include(o => o.PersonIDNavigation);
+            return View(await movieContext.ToListAsync());
         }
 
         // GET: Orderdetails/Details/5
@@ -33,16 +33,16 @@ namespace DZ5_1.Controllers
                 return NotFound();
             }
 
-            var movie_cast = await _context.Orderdetails
-                .Include(o => o.OrderNumberNavigation)
-                .Include(o => o.ProductCodeNavigation)
-                .FirstOrDefaultAsync(m => m.OrderNumber == id);
+            var movie_cast = await _context.MovieCast
+                .Include(o => o.MovieIDNavigation)
+                .Include(o => o.PersonIDNavigation)
+                .FirstOrDefaultAsync(m => m.movie_id == id);
             if (movie_cast == null)
             {
                 return NotFound();
             }
 
-            return View(orderdetail);
+            return View(movie_cast);
         }
 
         // GET: moviecast/Create
@@ -62,7 +62,7 @@ namespace DZ5_1.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(orderdetail);
+                _context.Add(movie_cast);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -72,20 +72,20 @@ namespace DZ5_1.Controllers
         }
 
         // GET: MovieCast/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? movie_id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var movie_cast = await _context.MovieCast.FindAsync(id);
+            var movie_cast = await _context.MovieCast.FindAsync(movie_id);
             if (movie_cast == null)
             {
                 return NotFound();
             }
-            ViewData["movie_id"] = new SelectList(_context.Orders, "movie_id", "Status", movie_cast.movie_id);
-            ViewData["person_id"] = new SelectList(_context.Products, "person_id", "person_id",movie_cast.person_id);
+            ViewData["movie_id"] = new SelectList(_context.Movie, "movie_id", "Status", movie_cast.movie_id);
+            ViewData["person_id"] = new SelectList(_context.Person, "person_id", "person_id",movie_cast.person_id);
             return View(movie_id);
         }
 
@@ -121,9 +121,9 @@ namespace DZ5_1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["movie_id"] = new SelectList(_context.Orders, "movie_id", "Status", orderdetail.OrderNumber);
-            ViewData["ProductCode"] = new SelectList(_context.Products, "ProductCode", "ProductCode", orderdetail.ProductCode);
-            return View(orderdetail);
+            ViewData["movie_id"] = new SelectList(_context.Movie, "movie_id", "Status", orderdetail.OrderNumber);
+            ViewData["ProductCode"] = new SelectList(_context.Person, "ProductCode", "ProductCode", orderdetail.ProductCode);
+            return View(movie_cast);
         }
 
         // GET: Orderdetails/Delete/5
@@ -138,7 +138,7 @@ namespace DZ5_1.Controllers
                 .Include(o => o.MovieIDNavigation)
                 .Include(o => o.PersonIDNavigation)
                 .FirstOrDefaultAsync(m => m.MovieID == movie_id);
-            if (movie_Cast == null)
+            if (movie_cast == null)
             {
                 return NotFound();
             }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DZ5_1.Models;
+using AA_2.Models;
 
-namespace DZ5_1.Controllers
+namespace AA_2.Controllers
 {
     public class CountryController : Controller
     {
@@ -65,15 +65,15 @@ namespace DZ5_1.Controllers
         }
 
         // GET: Edit/5
-        public async Task<IActionResult> Edit(string country_id)
+        public async Task<IActionResult> Edit(int country_id)
         {
             if (country_id == null)
             {
                 return NotFound();
             }
 
-            var country_id = await _context.Products.FindAsync(country_id);
-            if (country == null)
+            var country_id = await _context.Country.FindAsync(country_id);
+            if (country_id == null)
             {
                 return NotFound();
             }
@@ -118,7 +118,7 @@ namespace DZ5_1.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(string country_id)
         {
-            if (country:id == null)
+            if (country_id == null)
             {
                 return NotFound();
             }
@@ -136,7 +136,7 @@ namespace DZ5_1.Controllers
         // POST: Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string country_id)
+        public async Task<IActionResult> DeleteConfirmed(int country_id)
         {
             var product = await _context.Country.FindAsync(country_id);
             _context.Country.Remove(country_id);
@@ -144,7 +144,7 @@ namespace DZ5_1.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CountryExists(string country_id)
+        private bool CountryExists(int country_id)
         {
             return _context.Country.Any(e => e.country_id == country_id);
         }
